@@ -59,7 +59,7 @@ app.post("/repositories", (request, response) => {
     title,
     url,
     techs,
-    likes: []
+    likes: 0
   };
 
   repositories.push(newObject);
@@ -112,10 +112,10 @@ app.post("/repositories/:id/like", validateId, verifyIfExistRepository, (request
 
   const index = repositories.findIndex(el => el.id === id);
 
-  repositories[index].likes.push("Fulano");
+  repositories[index].likes++;
 
   return response.json({
-    newQuantity: repositories[index].likes.length
+    likes: repositories[index].likes
   })
 });
 
